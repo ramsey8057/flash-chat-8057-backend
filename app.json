@@ -1,0 +1,8 @@
+{
+    "name": "flash-hat-8057-backend",
+    "description": "the backend api for my Flash Chat App",
+    "repository": "https://github.com/ramsey8057/flash-chat-8057-backend",
+    "logo": "/src/images/icon.png",
+    "keywords": ["node", "express", "static", "api", "flash", "chat", "flash_chat"],
+    "image": "heroku/nodejs"
+}

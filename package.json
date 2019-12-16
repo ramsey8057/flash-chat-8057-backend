@@ -5,6 +5,9 @@
     "main": "app.js",
     "author": "Ahmed Ramsey",
     "license": "ISC",
+    "engines": {
+        "node": "12.13.1"
+    },
     "scripts": {
         "start": "nodemon src/app.js"
     },
