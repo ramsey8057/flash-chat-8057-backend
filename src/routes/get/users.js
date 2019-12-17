@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 const { all, withId } = require('../../database/users');
 
 const get = (server) => {

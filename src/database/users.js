@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 const mongoClient = require('mongodb').MongoClient;
 const connectionString = 'mongodb+srv://ramsey8057:DevAhmed2772003%40%23@flashchat-b8ibq.mongodb.net/test?retryWrites=true&w=majority';
 
@@ -41,5 +43,23 @@ const withId = (email, then) => {
 
 };
 
+const checkPassword = (email, password, then) => {
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users').find({ user_email: email, user_password: password }).toArray((err, result) => {
+
+            then(err, result);
+
+        });
+
+        db.close();
+
+    });
+};
+
 exports.all = all;
 exports.withId = withId;
+exports.checkPassword = checkPassword;
