@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-const { all, withId } = require('../../database/users');
+const { all, getUsingEmail } = require('../../database/users');
 
 const get = (server) => {
 
@@ -13,7 +13,7 @@ const get = (server) => {
 
             } else {
 
-                response.status(500).send('There is an error in the server');
+                response.status(400).send(err.errmsg);
 
             }
         });
@@ -25,7 +25,7 @@ const get = (server) => {
 const getUser = (server) => {
 
     server.get('/api/users/:email', (request, response) => {
-        withId(request.params.email.toString(), (err, user) => {
+        getUsingEmail(request.params.email.toString(), (err, user) => {
 
             if(!err) {
 
@@ -41,7 +41,7 @@ const getUser = (server) => {
 
             } else {
 
-                response.status(500).send('There is an error in the server');
+                response.status(400).send(err.errmsg);
 
             }
 

@@ -12,7 +12,24 @@ const all = (then) => {
 
         dbo.collection('flash_users').find().sort({ user_id: 1 }).toArray((err, result) => {
 
-            if(err) throw err;
+            then(err, result);
+
+        });
+
+        db.close();
+
+    });
+
+};
+
+const createUser = (user, then) => {
+
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users').insertOne(user, (err, result) => {
 
             then(err, result);
 
@@ -24,7 +41,8 @@ const all = (then) => {
 
 };
 
-const withId = (email, then) => {
+const getUsingEmail = (email, then) => {
+
     mongoClient.connect(connectionString, (err, db) => {
 
         if(err) throw err;
@@ -32,7 +50,6 @@ const withId = (email, then) => {
 
         dbo.collection('flash_users').find({ user_email: email }).toArray((err, result) => {
 
-            if(err) throw err;
             then(err, result);
 
         });
@@ -41,9 +58,11 @@ const withId = (email, then) => {
 
     });
 
+
 };
 
 const checkPassword = (email, password, then) => {
+
     mongoClient.connect(connectionString, (err, db) => {
 
         if(err) throw err;
@@ -58,8 +77,54 @@ const checkPassword = (email, password, then) => {
         db.close();
 
     });
+
+};
+
+const getNewId = (then) => {
+
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users').find().sort({ user_id: -1 }).toArray((err, result) => {
+
+            then(err, result[0].user_id + 1);
+
+        });
+
+        db.close();
+
+    });
+
+};
+
+const updateFirstName = (email, password, firstName, then) => {
+
+    // TODO add the functionality for updating the first name in mongodb
+
+};
+
+const updateLastName = (email, password, lastName, then) => {
+
+    // TODO add the functionality for updating the last name in mongodb
+
+};
+
+const updateEmail = (oldEmail, password, newEmail, then) => {
+
+    // TODO add the functionality for updating the email in mongodb
+
+};
+
+const updatePassword = (email, oldPassword, newPassword, then) => {
+
+    // TODO add the functionality for updating the password in mongodb
+
 };
 
 exports.all = all;
-exports.withId = withId;
+exports.getUsingEmail = getUsingEmail;
 exports.checkPassword = checkPassword;
+exports.createUser = createUser;
+exports.getNewId = getNewId;

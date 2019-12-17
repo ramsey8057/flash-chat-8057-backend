@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/ramsey8057/flash-chat-8057-backend#readme",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "joi": "^14.3.1",
