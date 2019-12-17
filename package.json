@@ -11,7 +11,16 @@
     "type": "git",
     "url": "git+https://github.com/ramsey8057/flash-chat-8057-backend.git"
   },
-  "keywords": ["flash", "chat", "flash_chat", "node", "js", "nodejs", "express", "mongodb"],
+  "keywords": [
+    "flash",
+    "chat",
+    "flash_chat",
+    "node",
+    "js",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
   "author": "Ahmed Ramsey",
   "license": "ISC",
   "bugs": {
@@ -19,6 +28,9 @@
   },
   "homepage": "https://github.com/ramsey8057/flash-chat-8057-backend#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "joi": "^14.3.1",
     "nodemon": "^2.0.2"
   }
 }
