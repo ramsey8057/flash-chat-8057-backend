@@ -1,17 +1,18 @@
 {
   "name": "flash-chat-8057-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "backend API for Flash Chat",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ramsey8057/flash-chat-8057-backend.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["flash", "chat", "flash_chat", "node", "js", "nodejs", "express", "mongodb"],
+  "author": "Ahmed Ramsey",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ramsey8057/flash-chat-8057-backend/issues"
