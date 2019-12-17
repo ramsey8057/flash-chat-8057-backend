@@ -1,0 +1,23 @@
+{
+  "name": "flash-chat-8057-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramsey8057/flash-chat-8057-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramsey8057/flash-chat-8057-backend/issues"
+  },
+  "homepage": "https://github.com/ramsey8057/flash-chat-8057-backend#readme",
+  "dependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
