@@ -2,7 +2,7 @@
 
 const { checkPasswordDB, createUserDB, getNewIdDB } = require('../../database/users');
 const { checkPasswordScheme, checkUserScheme } = require('../../global/validationSchemes');
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const create = (server) => {
 

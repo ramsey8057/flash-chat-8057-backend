@@ -2,7 +2,7 @@
 
 const { updateFirstNameDB, updateLastNameDB, updateEmailDB, updatePasswordDB, disableUserDB, enableUserDB } = require('../../database/users');
 const { updateNameScheme, updateEmailScheme, updatePasswordScheme, checkPasswordScheme } = require('../../global/validationSchemes');
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const updateFirstName = (server) => {
 
