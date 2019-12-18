@@ -1,7 +1,7 @@
 // jshint esversion: 6
 
-const { updateFirstNameDB, updateLastNameDB, updateEmailDB, updatePasswordDB } = require('../../database/users');
-const { updateNameScheme, updateEmailScheme, updatePasswordScheme } = require('../../global/validationSchemes');
+const { updateFirstNameDB, updateLastNameDB, updateEmailDB, updatePasswordDB, disableUserDB, enableUserDB } = require('../../database/users');
+const { updateNameScheme, updateEmailScheme, updatePasswordScheme, checkPasswordScheme } = require('../../global/validationSchemes');
 const Joi = require('Joi');
 
 const updateFirstName = (server) => {
@@ -124,7 +124,69 @@ const updatePassword = (server) => {
 
 };
 
+const disableUser = (server) => {
+
+    server.put('/api/users/update/disable', (request, response) => {
+
+        const result = Joi.validate(request.body, checkPasswordScheme);
+        result.then(() => {
+
+            disableUserDB(request.body.email, request.body.password, (err, res) => {
+
+                if(err || (res.result.n === 0)) {
+                    
+                    response.status(404).send('The user with the given email and password was not found');
+                    return;
+
+                }
+                
+                response.status(200).send(JSON.stringify(res));
+
+            });
+
+        }).catch(() => {
+
+            response.status(400).send(result.error.details[0].message);
+
+        });
+
+    });
+
+};
+
+const enableUser = (server) => {
+
+    server.put('/api/users/update/enable', (request, response) => {
+
+        const result = Joi.validate(request.body, checkPasswordScheme);
+        result.then(() => {
+
+            enableUserDB(request.body.email, request.body.password, (err, res) => {
+
+                if(err || (res.result.n === 0)) {
+                    
+                    response.status(404).send('The user with the given email and password was not found');
+                    return;
+
+                }
+                
+                response.status(200).send(JSON.stringify(res));
+
+            });
+
+        }).catch(() => {
+
+            response.status(400).send(result.error.details[0].message);
+
+        });
+
+    });
+
+};
+
 module.exports.updateFirstName = updateFirstName;
 module.exports.updateLastName = updateLastName;
 module.exports.updateEmail = updateEmail;
 module.exports.updatePassword = updatePassword;
+module.exports.disableUser = disableUser;
+module.exports.enableUser = enableUser;

@@ -242,6 +242,68 @@ const deleteUserDB = (email, then) => {
 
 };
 
+const disableUserDB = (email, password, then) => {
+
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users')
+           .updateOne(
+               {
+                   user_email: email,
+                   user_password: password,
+               },
+               {
+                   $set: {
+                       user_is_active: false,
+                   },
+               },
+               (err, res) => {
+
+                then(err, res);
+
+               }
+           );
+           
+        db.close();
+
+    });
+
+};
+
+const enableUserDB = (email, password, then) => {
+
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users')
+           .updateOne(
+               {
+                   user_email: email,
+                   user_password: password,
+               },
+               {
+                   $set: {
+                       user_is_active: true,
+                   },
+               },
+               (err, res) => {
+
+                then(err, res);
+
+               }
+           );
+           
+        db.close();
+
+    });
+
+};
+
 module.exports.allDB = allDB;
 module.exports.getUsingEmailDB = getUsingEmailDB;
 module.exports.checkPasswordDB = checkPasswordDB;
@@ -252,3 +314,5 @@ module.exports.updateLastNameDB = updateLastNameDB;
 module.exports.updateEmailDB = updateEmailDB;
 module.exports.updatePasswordDB = updatePasswordDB;
 module.exports.deleteUserDB = deleteUserDB;
+module.exports.disableUserDB = disableUserDB;
+module.exports.enableUserDB = enableUserDB;

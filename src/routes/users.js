@@ -2,7 +2,7 @@
 
 const { get, getUser } = require('./get/users');
 const { check, create } = require('./post/users');
-const { updateFirstName, updateLastName, updateEmail, updatePassword } = require('./put/users');
+const { updateFirstName, updateLastName, updateEmail, updatePassword, disableUser, enableUser } = require('./put/users');
 const { deleteUser } = require('./delete/users');
 
 const users = (server) => {
@@ -16,6 +16,8 @@ const users = (server) => {
     updateEmail(server);
     updatePassword(server);
     deleteUser(server);
+    disableUser(server);
+    enableUser(server);
 
 };
 
