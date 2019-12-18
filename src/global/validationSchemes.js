@@ -20,6 +20,20 @@ const updateNameScheme = Joi.object({
     name: Joi.string().min(3).required(),
 });
 
+const updateEmailScheme = Joi.object({
+    email: Joi.string().min(5).required(),
+    password: Joi.string().min(8).required(),
+    new_email: Joi.string().min(5).required(),
+});
+
+const updatePasswordScheme = Joi.object({
+    email: Joi.string().min(5).required(),
+    password: Joi.string().min(8).required(),
+    new_password: Joi.string().min(8).required(),
+});
+
 module.exports.checkPasswordScheme = checkPasswordScheme;
 module.exports.checkUserScheme = checkUserScheme;
 module.exports.updateNameScheme = updateNameScheme;
+module.exports.updateEmailScheme = updateEmailScheme;
+module.exports.updatePasswordScheme = updatePasswordScheme;

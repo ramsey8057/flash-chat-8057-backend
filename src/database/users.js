@@ -163,13 +163,63 @@ const updateLastNameDB = (email, password, lastName, then) => {
 
 const updateEmailDB = (oldEmail, password, newEmail, then) => {
 
-    // TODO: add the functionality for updating the email in mongodb
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users')
+           .updateOne(
+               {
+                   user_email: oldEmail,
+                   user_password: password,
+               },
+               {
+                   $set: {
+                       user_email: newEmail,
+                   },
+               },
+               (err, res) => {
+
+                then(err, res);
+
+               }
+           );
+           
+        db.close();
+
+    });
 
 };
 
 const updatePasswordDB = (email, oldPassword, newPassword, then) => {
 
-    // TODO: add the functionality for updating the password in mongodb
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users')
+           .updateOne(
+               {
+                   user_email: email,
+                   user_password: oldPassword,
+               },
+               {
+                   $set: {
+                       user_password: newPassword,
+                   },
+               },
+               (err, res) => {
+
+                then(err, res);
+
+               }
+           );
+           
+        db.close();
+
+    });
 
 };
 
