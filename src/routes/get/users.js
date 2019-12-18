@@ -1,12 +1,12 @@
 // jshint esversion: 6
 
-const { all, getUsingEmail } = require('../../database/users');
+const { allDB, getUsingEmailDB } = require('../../database/users');
 
 const get = (server) => {
 
     server.get('/api/users', (request, response) => {
 
-        all((err, users) => {
+        allDB((err, users) => {
             if(!err) {
 
                 response.status(200).send(JSON.stringify(users));
@@ -25,7 +25,7 @@ const get = (server) => {
 const getUser = (server) => {
 
     server.get('/api/users/:email', (request, response) => {
-        getUsingEmail(request.params.email.toString(), (err, user) => {
+        getUsingEmailDB(request.params.email.toString(), (err, user) => {
 
             if(!err) {
 

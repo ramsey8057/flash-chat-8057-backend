@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-const { checkPassword, createUser, getNewId } = require('../../database/users');
+const { checkPasswordDB, createUserDB, getNewIdDB } = require('../../database/users');
 const { checkPasswordScheme, checkUserScheme } = require('../../global/validationSchemes');
 const Joi = require('Joi');
 
@@ -11,7 +11,7 @@ const create = (server) => {
         const result = Joi.validate(request.body, checkUserScheme);
         result.then(() => {
 
-            getNewId((err, result) => {
+            getNewIdDB((err, result) => {
 
                 if(err) {
 
@@ -24,11 +24,11 @@ const create = (server) => {
                 request.body.user_subscription_date = new Date();
                 request.body.user_dob = new Date(request.body.user_dob);
                 request.body.user_is_active = true;
-                createUser(request.body, (err, result) => {
+                createUserDB(request.body, (err, result) => {
 
                     if(!err) {
 
-                        response.status(200).send(result);
+                        response.status(200).send(JSON.stringify(result));
 
                     } else {
 
@@ -57,13 +57,13 @@ const check = (server) => {
         const result = Joi.validate(request.body, checkPasswordScheme);
         result.then(() => {
 
-            checkPassword(request.body.email, request.body.password, (err, result) => {
+            checkPasswordDB(request.body.email, request.body.password, (err, result) => {
 
                 if(!err) {
 
                     if(result.length !== 0) {
 
-                        response.status(200).send(result);
+                        response.status(200).send(JSON.stringify(result));
 
                     } else {
 

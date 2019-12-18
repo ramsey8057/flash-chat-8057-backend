@@ -3,7 +3,7 @@
 const mongoClient = require('mongodb').MongoClient;
 const connectionString = 'mongodb+srv://ramsey8057:DevAhmed2772003%40%23@flashchat-b8ibq.mongodb.net/test?retryWrites=true&w=majority';
 
-const all = (then) => {
+const allDB = (then) => {
 
     mongoClient.connect(connectionString, (err, db) => {
 
@@ -22,7 +22,7 @@ const all = (then) => {
 
 };
 
-const createUser = (user, then) => {
+const createUserDB = (user, then) => {
 
     mongoClient.connect(connectionString, (err, db) => {
 
@@ -41,7 +41,7 @@ const createUser = (user, then) => {
 
 };
 
-const getUsingEmail = (email, then) => {
+const getUsingEmailDB = (email, then) => {
 
     mongoClient.connect(connectionString, (err, db) => {
 
@@ -61,7 +61,7 @@ const getUsingEmail = (email, then) => {
 
 };
 
-const checkPassword = (email, password, then) => {
+const checkPasswordDB = (email, password, then) => {
 
     mongoClient.connect(connectionString, (err, db) => {
 
@@ -80,7 +80,7 @@ const checkPassword = (email, password, then) => {
 
 };
 
-const getNewId = (then) => {
+const getNewIdDB = (then) => {
 
     mongoClient.connect(connectionString, (err, db) => {
 
@@ -99,32 +99,86 @@ const getNewId = (then) => {
 
 };
 
-const updateFirstName = (email, password, firstName, then) => {
+const updateFirstNameDB = (email, password, firstName, then) => {
 
-    // TODO add the functionality for updating the first name in mongodb
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users')
+           .updateOne(
+               {
+                   user_email: email,
+                   user_password: password,
+               },
+               {
+                   $set: {
+                       user_first_name: firstName,
+                   },
+               },
+               (err, res) => {
+
+                then(err, res);
+
+               }
+           );
+
+        db.close();
+
+    });
 
 };
 
-const updateLastName = (email, password, lastName, then) => {
+const updateLastNameDB = (email, password, lastName, then) => {
 
-    // TODO add the functionality for updating the last name in mongodb
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users')
+           .updateOne(
+               {
+                   user_email: email,
+                   user_password: password,
+               },
+               {
+                   $set: {
+                       user_last_name: lastName,
+                   },
+               },
+               (err, res) => {
+
+                then(err, res);
+
+               }
+           );
+           
+        db.close();
+
+    });
 
 };
 
-const updateEmail = (oldEmail, password, newEmail, then) => {
+const updateEmailDB = (oldEmail, password, newEmail, then) => {
 
-    // TODO add the functionality for updating the email in mongodb
-
-};
-
-const updatePassword = (email, oldPassword, newPassword, then) => {
-
-    // TODO add the functionality for updating the password in mongodb
+    // TODO: add the functionality for updating the email in mongodb
 
 };
 
-exports.all = all;
-exports.getUsingEmail = getUsingEmail;
-exports.checkPassword = checkPassword;
-exports.createUser = createUser;
-exports.getNewId = getNewId;
+const updatePasswordDB = (email, oldPassword, newPassword, then) => {
+
+    // TODO: add the functionality for updating the password in mongodb
+
+};
+
+module.exports.allDB = allDB;
+module.exports.getUsingEmailDB = getUsingEmailDB;
+module.exports.checkPasswordDB = checkPasswordDB;
+module.exports.createUserDB = createUserDB;
+module.exports.getNewIdDB = getNewIdDB;
+module.exports.updateFirstNameDB = updateFirstNameDB;
+module.exports.updateLastNameDB = updateLastNameDB;
+module.exports.updateEmailDB = updateEmailDB;
+module.exports.updatePasswordDB = updatePasswordDB;

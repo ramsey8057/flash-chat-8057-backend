@@ -14,5 +14,12 @@ const checkUserScheme = Joi.object({
     user_dob: Joi.date().less(new Date((new Date() - (24 * 60 * 60 * 1000 * 30 * 12) * 11))).required(),
 });
 
-exports.checkPasswordScheme = checkPasswordScheme;
-exports.checkUserScheme = checkUserScheme;
+const updateNameScheme = Joi.object({
+    email: Joi.string().min(5).required(),
+    password: Joi.string().min(8).required(),
+    name: Joi.string().min(3).required(),
+});
+
+module.exports.checkPasswordScheme = checkPasswordScheme;
+module.exports.checkUserScheme = checkUserScheme;
+module.exports.updateNameScheme = updateNameScheme;
