@@ -32,8 +32,16 @@ const updatePasswordScheme = Joi.object({
     new_password: Joi.string().min(8).required(),
 });
 
+const deleteUserScheme = Joi.object({
+
+    email: Joi.string().min(5).required(),
+    password: Joi.string().min(8).required(),
+
+});
+
 module.exports.checkPasswordScheme = checkPasswordScheme;
 module.exports.checkUserScheme = checkUserScheme;
 module.exports.updateNameScheme = updateNameScheme;
 module.exports.updateEmailScheme = updateEmailScheme;
 module.exports.updatePasswordScheme = updatePasswordScheme;
+module.exports.deleteUserScheme = deleteUserScheme;

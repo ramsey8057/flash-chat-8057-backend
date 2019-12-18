@@ -223,6 +223,25 @@ const updatePasswordDB = (email, oldPassword, newPassword, then) => {
 
 };
 
+const deleteUserDB = (email, then) => {
+    
+    mongoClient.connect(connectionString, (err, db) => {
+
+        if(err) throw err;
+        const dbo = db.db('flash_chat');
+
+        dbo.collection('flash_users').deleteOne({ user_email: email, }, (err, res) => {
+
+            then(err, res);
+
+        });
+
+        db.close();
+
+    });
+
+};
+
 module.exports.allDB = allDB;
 module.exports.getUsingEmailDB = getUsingEmailDB;
 module.exports.checkPasswordDB = checkPasswordDB;
@@ -232,3 +251,4 @@ module.exports.updateFirstNameDB = updateFirstNameDB;
 module.exports.updateLastNameDB = updateLastNameDB;
 module.exports.updateEmailDB = updateEmailDB;
 module.exports.updatePasswordDB = updatePasswordDB;
+module.exports.deleteUserDB = deleteUserDB;
