@@ -89,7 +89,15 @@ const getNewIdDB = (then) => {
 
         dbo.collection('flash_users').find().sort({ user_id: -1 }).toArray((err, result) => {
 
-            then(err, result[0].user_id + 1);
+            if(result[0]) {
+
+                then(err, result[0].user_id + 1);
+
+            } else {
+
+                then(err, 1);
+
+            }
 
         });
 
@@ -107,22 +115,22 @@ const updateFirstNameDB = (email, password, firstName, then) => {
         const dbo = db.db('flash_chat');
 
         dbo.collection('flash_users')
-           .updateOne(
-               {
-                   user_email: email,
-                   user_password: password,
-               },
-               {
-                   $set: {
-                       user_first_name: firstName,
-                   },
-               },
-               (err, res) => {
+            .updateOne(
+                {
+                    user_email: email,
+                    user_password: password,
+                },
+                {
+                    $set: {
+                        user_first_name: firstName,
+                    },
+                },
+                (err, res) => {
 
-                then(err, res);
+                    then(err, res);
 
-               }
-           );
+                }
+            );
 
         db.close();
 
@@ -138,23 +146,23 @@ const updateLastNameDB = (email, password, lastName, then) => {
         const dbo = db.db('flash_chat');
 
         dbo.collection('flash_users')
-           .updateOne(
-               {
-                   user_email: email,
-                   user_password: password,
-               },
-               {
-                   $set: {
-                       user_last_name: lastName,
-                   },
-               },
-               (err, res) => {
+            .updateOne(
+                {
+                    user_email: email,
+                    user_password: password,
+                },
+                {
+                    $set: {
+                        user_last_name: lastName,
+                    },
+                },
+                (err, res) => {
 
-                then(err, res);
+                    then(err, res);
 
-               }
-           );
-           
+                }
+            );
+
         db.close();
 
     });
@@ -169,23 +177,23 @@ const updateEmailDB = (oldEmail, password, newEmail, then) => {
         const dbo = db.db('flash_chat');
 
         dbo.collection('flash_users')
-           .updateOne(
-               {
-                   user_email: oldEmail,
-                   user_password: password,
-               },
-               {
-                   $set: {
-                       user_email: newEmail,
-                   },
-               },
-               (err, res) => {
+            .updateOne(
+                {
+                    user_email: oldEmail,
+                    user_password: password,
+                },
+                {
+                    $set: {
+                        user_email: newEmail,
+                    },
+                },
+                (err, res) => {
 
-                then(err, res);
+                    then(err, res);
 
-               }
-           );
-           
+                }
+            );
+
         db.close();
 
     });
@@ -200,23 +208,23 @@ const updatePasswordDB = (email, oldPassword, newPassword, then) => {
         const dbo = db.db('flash_chat');
 
         dbo.collection('flash_users')
-           .updateOne(
-               {
-                   user_email: email,
-                   user_password: oldPassword,
-               },
-               {
-                   $set: {
-                       user_password: newPassword,
-                   },
-               },
-               (err, res) => {
+            .updateOne(
+                {
+                    user_email: email,
+                    user_password: oldPassword,
+                },
+                {
+                    $set: {
+                        user_password: newPassword,
+                    },
+                },
+                (err, res) => {
 
-                then(err, res);
+                    then(err, res);
 
-               }
-           );
-           
+                }
+            );
+
         db.close();
 
     });
@@ -224,7 +232,7 @@ const updatePasswordDB = (email, oldPassword, newPassword, then) => {
 };
 
 const deleteUserDB = (email, then) => {
-    
+
     mongoClient.connect(connectionString, (err, db) => {
 
         if(err) throw err;
@@ -250,23 +258,23 @@ const disableUserDB = (email, password, then) => {
         const dbo = db.db('flash_chat');
 
         dbo.collection('flash_users')
-           .updateOne(
-               {
-                   user_email: email,
-                   user_password: password,
-               },
-               {
-                   $set: {
-                       user_is_active: false,
-                   },
-               },
-               (err, res) => {
+            .updateOne(
+                {
+                    user_email: email,
+                    user_password: password,
+                },
+                {
+                    $set: {
+                        user_is_active: false,
+                    },
+                },
+                (err, res) => {
 
-                then(err, res);
+                    then(err, res);
 
-               }
-           );
-           
+                }
+            );
+
         db.close();
 
     });
@@ -281,23 +289,23 @@ const enableUserDB = (email, password, then) => {
         const dbo = db.db('flash_chat');
 
         dbo.collection('flash_users')
-           .updateOne(
-               {
-                   user_email: email,
-                   user_password: password,
-               },
-               {
-                   $set: {
-                       user_is_active: true,
-                   },
-               },
-               (err, res) => {
+            .updateOne(
+                {
+                    user_email: email,
+                    user_password: password,
+                },
+                {
+                    $set: {
+                        user_is_active: true,
+                    },
+                },
+                (err, res) => {
 
-                then(err, res);
+                    then(err, res);
 
-               }
-           );
-           
+                }
+            );
+
         db.close();
 
     });

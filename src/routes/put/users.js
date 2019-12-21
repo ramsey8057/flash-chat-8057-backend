@@ -14,12 +14,12 @@ const updateFirstName = (server) => {
             updateFirstNameDB(request.body.email, request.body.password, request.body.name, (err, res) => {
 
                 if(err || (res.result.n === 0)) {
-                    
+
                     response.status(404).send('The user with the given email and password was not found');
                     return;
 
                 }
-                
+
                 response.status(200).send(JSON.stringify(res));
 
             });
@@ -44,12 +44,12 @@ const updateLastName = (server) => {
             updateLastNameDB(request.body.email, request.body.password, request.body.name, (err, res) => {
 
                 if(err || (res.result.n === 0)) {
-                    
+
                     response.status(404).send('The user with the given email and password was not found');
                     return;
 
                 }
-                
+
                 response.status(200).send(JSON.stringify(res));
 
             });
@@ -74,12 +74,12 @@ const updateEmail = (server) => {
             updateEmailDB(request.body.email, request.body.password, request.body.new_email, (err, res) => {
 
                 if(err || (res.result.n === 0)) {
-                    
+
                     response.status(404).send('The user with the given email and password was not found');
                     return;
 
                 }
-                
+
                 response.status(200).send(JSON.stringify(res));
 
             });
@@ -104,12 +104,12 @@ const updatePassword = (server) => {
             updatePasswordDB(request.body.email, request.body.password, request.body.new_password, (err, res) => {
 
                 if(err || (res.result.n === 0)) {
-                    
+
                     response.status(404).send('The user with the given email and password was not found');
                     return;
 
                 }
-                
+
                 response.status(200).send(JSON.stringify(res));
 
             });
@@ -134,12 +134,12 @@ const disableUser = (server) => {
             disableUserDB(request.body.email, request.body.password, (err, res) => {
 
                 if(err || (res.result.n === 0)) {
-                    
+
                     response.status(404).send('The user with the given email and password was not found');
                     return;
 
                 }
-                
+
                 response.status(200).send(JSON.stringify(res));
 
             });
@@ -164,12 +164,12 @@ const enableUser = (server) => {
             enableUserDB(request.body.email, request.body.password, (err, res) => {
 
                 if(err || (res.result.n === 0)) {
-                    
+
                     response.status(404).send('The user with the given email and password was not found');
                     return;
 
                 }
-                
+
                 response.status(200).send(JSON.stringify(res));
 
             });

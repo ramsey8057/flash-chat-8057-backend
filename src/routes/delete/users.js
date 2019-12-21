@@ -7,7 +7,7 @@ const Joi = require('joi');
 const deleteUser = (server) => {
 
     server.delete('/api/users/delete/:email', (request, response) => {
-        
+
         const result = Joi.validate(deleteUserScheme);
         result.then(() => {
 
@@ -19,7 +19,7 @@ const deleteUser = (server) => {
                     return;
 
                 }
-                
+
                 response.status(200).send(res);
 
             });
