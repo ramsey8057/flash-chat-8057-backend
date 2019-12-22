@@ -39,9 +39,28 @@ const deleteUserScheme = Joi.object({
 
 });
 
+const checkMessageScheme = Joi.object({
+
+    sender_email: Joi.string().min(5).required(),
+    content: Joi.string().required(),
+    time_created: Joi.date().required(),
+
+});
+
+const checkConversationScheme = Joi.object({
+
+    participants: Joi.object().keys({
+        first_participant_id: Joi.number().integer().required(),
+        second_participant_id: Joi.number().integer().required(),
+    }).required(),
+
+});
+
 module.exports.checkPasswordScheme = checkPasswordScheme;
 module.exports.checkUserScheme = checkUserScheme;
 module.exports.updateNameScheme = updateNameScheme;
 module.exports.updateEmailScheme = updateEmailScheme;
 module.exports.updatePasswordScheme = updatePasswordScheme;
 module.exports.deleteUserScheme = deleteUserScheme;
+module.exports.checkMessageScheme = checkMessageScheme;
+module.exports.checkConversationScheme = checkConversationScheme;
