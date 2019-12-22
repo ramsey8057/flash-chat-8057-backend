@@ -29,10 +29,12 @@
   "homepage": "https://github.com/ramsey8057/flash-chat-8057-backend#readme",
   "dependencies": {
     "crypto": "^1.0.1",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "joi": "^14.3.1",
     "mongodb": "^3.4.0",
+    "nodemailer": "^6.4.2",
     "nodemon": "^2.0.2"
   }
 }

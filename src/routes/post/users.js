@@ -3,6 +3,7 @@
 const { checkPasswordDB, createUserDB, getNewIdDB } = require('../../database/users');
 const { checkPasswordScheme, checkUserScheme } = require('../../global/validationSchemes');
 const Joi = require('joi');
+const nodemailer = require('nodemailer');
 
 const create = (server) => {
 
@@ -91,3 +92,4 @@ const check = (server) => {
 
 exports.check = check;
 exports.create = create;
+exports.sendEmailVerification = sendEmailVerification;
