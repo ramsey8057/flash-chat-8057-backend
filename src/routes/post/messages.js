@@ -2,7 +2,7 @@
 
 const { getNewConversationIdDB, createConversationDB } = require('../../database/messages');
 const { checkConversationScheme } = require('../../global/validationSchemes');
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const createConversation = (server) => {
 

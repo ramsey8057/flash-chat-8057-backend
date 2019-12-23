@@ -1,6 +1,7 @@
 // jshint esversion: 6
 
 const { checkPasswordDB, createUserDB, getNewIdDB } = require('../../database/users');
+const { createUserContactsDB } = require('../../database/contacts');
 const { checkPasswordScheme, checkUserScheme } = require('../../global/validationSchemes');
 const Joi = require('joi');
 
@@ -24,11 +25,22 @@ const create = (server) => {
                 request.body.user_subscription_date = new Date();
                 request.body.user_dob = new Date(request.body.user_dob);
                 request.body.user_is_active = true;
-                createUserDB(request.body, (err, result) => {
+                createUserDB(request.body, (err, res) => {
 
                     if(!err) {
 
-                        response.status(200).send(JSON.stringify(result));
+                        createUserContactsDB(request.body.user_id, (err, result) => {
+
+                            if(!err) {
+
+                                response.status(200).send(JSON.stringify(res));
+                                return;
+
+                            }
+
+                            response.status(500).send(err.errmsg);
+
+                        });
 
                     } else {
 
